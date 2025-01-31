@@ -1,16 +1,21 @@
 import LampON from "../../assets/lamp-on.png";
 import LampOFF from "../../assets/lamp-off.png";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 interface LampLazyProps {
   isOn: boolean;
   onCountClickOn: (count: number) => void;
 }
 
-let count = 0;
-
 export const LampLazy = ({ isOn, onCountClickOn }: LampLazyProps) => {
+
+  const [countClickOn, setCountClickOn] = useState(0)
+
   const lampImage = useMemo(() => (isOn ? LampON : LampOFF), [isOn]);
+
+  useEffect(() => {
+    onCountClickOn(countClickOn)
+  }, [countClickOn, onCountClickOn])
 
   return (
     <img
@@ -18,7 +23,7 @@ export const LampLazy = ({ isOn, onCountClickOn }: LampLazyProps) => {
       height={250}
       src={lampImage}
       alt="lamp"
-      onClick={() => isOn && onCountClickOn(count++)}
+      onClick={() => isOn && setCountClickOn(countClickOn + 1)}
     />
   );
 };
