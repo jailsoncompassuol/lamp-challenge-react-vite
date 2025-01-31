@@ -1,4 +1,3 @@
-import './styles.css'
 import LampON from '../../assets/lamp-on.png'
 import LampOFF from '../../assets/lamp-off.png'
 import { useMemo, useState } from 'react'
